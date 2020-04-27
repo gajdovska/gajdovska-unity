@@ -1,4 +1,4 @@
 sceneSetups:
-- path: D:/Virtuelna Realnost/lab2/Assets/Scenes/SampleScene.unity
+- path: Assets/MyData/Scenes/First.unity
   isLoaded: 1
   isActive: 1
