@@ -23,6 +23,7 @@ public class InteractiveObject : MonoBehaviour
 
     private Hashtable iTweenArgs;
     // Start is called before the first frame update
+    private AudioSource audioSource;
     void Start()
     {
         textAnimator = FindObjectOfType<TextAnimator>();
@@ -30,7 +31,9 @@ public class InteractiveObject : MonoBehaviour
         iTweenArgs.Add("position", openPosition);
         iTweenArgs.Add("time", animationTime);
         iTweenArgs.Add("islocal", true);
+        audioSource = GetComponent<AudioSource>();
     }
+  
 
     // Update is called once per frame
     void Update()
@@ -40,17 +43,26 @@ public class InteractiveObject : MonoBehaviour
     }
     public void UpdatePosition()
     {
+       
         if (!isLocked)
         {
             if (isOpen && ((hands.transform.position - transform.position).magnitude < 4.5))
             {
                 iTweenArgs["position"] = closePosition;
                 iTweenArgs["rotation"] = closePosition;
+                if (audioSource)
+                {
+                    audioSource.Play();
+                }
             }
             else if (!isOpen && ((hands.transform.position - transform.position).magnitude < 4.5))
             {
                 iTweenArgs["position"] = openPosition;
                 iTweenArgs["rotation"] = openPosition;
+                if (audioSource)
+                {
+                    audioSource.Play();
+                }
             }
             isOpen = !isOpen;
             switch (moveType)
