@@ -33,7 +33,8 @@ public class GvrButton : MonoBehaviour
     {
         gvrStatus = false;
         gvrTimer = 0;
-        Panel.SetActive(false);
+        if(Panel != null)
+            Panel.SetActive(false);
      
    
     }

@@ -10,14 +10,22 @@ public class Pickup : MonoBehaviour
 
     [SerializeField]
     InteractiveObject myUnlockableObject;
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void OnTriggerEnter(Collider collider)
     {
         if (collider.tag == "Player")
         {
+            audioSource.Play();
             FindObjectOfType<TextAnimator>().Show(myMessage);
             myUnlockableObject.Unlock();
             Destroy(gameObject);
+
         }
     }
 }
